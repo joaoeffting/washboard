@@ -176,6 +176,30 @@ TanStack Query/Realtime wiring matter:
 - **Test coverage is part of the portfolio demonstration, not optional
   polish** — see Testing.
 
+## Accessibility & SEO
+
+Both are standing requirements from `projects-to-study-nextjs/CLAUDE.md`
+(the "shared conventions" every project in that repo's kickoff flow
+carries forward, even one like this that lives outside the repo) — not
+optional polish, and not deferred to a final pass:
+
+- **Accessibility** — real `<button>`/`<label htmlFor>` elements, not
+  `<div onClick>`; icon-only controls get `aria-label`, decorative icons
+  get `aria-hidden="true"`; `lang` set on `<html>`; shadcn's
+  `focus-visible` ring left intact. The one thing washboard needs more
+  than a typical project: the booking calendar's live state (Realtime
+  book/cancel events, optimistic "yours (pending)" states) needs an
+  `aria-live` region — without one, a screen reader user gets no signal
+  that a slot they're looking at just changed out from under them.
+- **SEO** — mostly narrow here, since the booking calendar itself sits
+  behind auth (nothing to index once a resident's inside a building).
+  What's actually public: the marketing/landing page and signup flow —
+  those get real `generateMetadata`/Open Graph, same as any other
+  project. `robots.ts` should explicitly disallow the authenticated
+  building/calendar routes; `sitemap.ts` only needs the public marketing
+  surface, not per-building calendar pages (those aren't content anyone
+  should be searching for).
+
 ## Testing
 
 Playwright integration tests from Phase 1, not deferred to a later pass

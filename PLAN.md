@@ -45,6 +45,12 @@ already in SPEC.md — so it's not lost if context resets.
 - **2026-08-20** — default slot schedule: 07:00–22:00, 3-hour slots, 5
   per machine per day. Admin-configurable per building, but this is the
   seed default and the concrete example the product is designed around.
+- **2026-08-20** — accessibility and SEO added as explicit standing
+  requirements (SPEC.md's Accessibility & SEO section, Phase 9's audit
+  bullets below) after being caught only in retrospect — flagged the same
+  day for `coffeedex` too (which had real gaps: no `sitemap.ts`/
+  `robots.ts`, no JSON-LD) and for the shared kickoff doc/CLAUDE.md so
+  future projects don't repeat the miss.
 - **2026-08-20** — `washboard-dev` Supabase project created: org
   `washboard` (`xghhayakyvtifqtbllna`), project ref `cxxsmzkatddjaxmszwfo`,
   region `eu-north-1`. Created via a temporary Personal Access Token
@@ -203,6 +209,19 @@ link, and the automated spec passes.
 - Full click-through completeness audit: every route reachable via real
   nav, every action has its counterpart, consistent styling across admin
   and resident views.
+- **Accessibility & SEO audit** (see SPEC.md's Accessibility & SEO
+  section — don't treat this as new scope invented here, it should
+  already be mostly true by this point from building each feature
+  correctly the first time):
+  - `aria-live` region on the booking calendar for Realtime/optimistic
+    state changes.
+  - Keyboard-only click-through: every action reachable and completable
+    (create/join building, add machine, book/cancel a slot) using only
+    Tab/Enter/Space, no mouse.
+  - `robots.ts` disallows authenticated building/calendar routes;
+    `sitemap.ts` only lists the public marketing surface.
+  - `generateMetadata`/Open Graph present on the public marketing/signup
+    pages.
 - Playwright spec(s) covering at least one empty-state and one
   error-state scenario per major page.
 
